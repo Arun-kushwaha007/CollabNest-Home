@@ -7,6 +7,9 @@
 body {
   @apply bg-white text-gray-800 font-sans;
 }
+html {
+  scroll-behavior: smooth;
+}
 html, body, #root {
   height: 100%;
   margin: 0;

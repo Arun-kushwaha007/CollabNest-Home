@@ -28,13 +28,13 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="py-20 px-6 bg-gray-50">
+    <section id="features" className="py-20 px-6 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-4"
+          className="text-4xl font-bold mb-4 text-gray-900 dark:text-white"
         >
           Built for Seamless Teamwork
         </motion.h2>
@@ -42,7 +42,7 @@ const Features = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-gray-600 mb-12"
+          className="text-gray-600 dark:text-gray-300 mb-12"
         >
           Everything your team needs to move faster and smarter, in one powerful platform.
         </motion.p>
@@ -55,11 +55,13 @@ const Features = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
+              className="bg-white dark:bg-gray-700 p-6 rounded-2xl shadow-md hover:shadow-lg dark:hover:shadow-xl transition-all duration-300 hover:scale-105 text-center"
             >
-              <div className="mb-4">{feat.icon}</div>
-              <h3 className="text-xl font-semibold text-primary mb-2">{feat.title}</h3>
-              <p className="text-gray-600 text-sm">{feat.description}</p>
+              <div className="inline-block mb-4">{feat.icon}</div> {/* Ensure icon is centered using inline-block and text-center on parent */}
+              <div className="text-left"> {/* Wrapper for left-aligning text */}
+                <h3 className="text-xl font-semibold text-primary dark:text-white mb-2">{feat.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">{feat.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>

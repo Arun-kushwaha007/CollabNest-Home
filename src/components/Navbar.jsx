@@ -14,24 +14,24 @@ const Navbar = () => {
       className="w-full px-6 py-4 flex justify-between items-center bg-white dark:bg-gray-900 shadow-md fixed z-50"
     >
       <h1 className="text-2xl font-bold text-primary dark:text-white">CollabNest</h1>
-      <div className="flex gap-4 items-center">
-        <a href="#features" className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent">Features</a>
-        <a href="#contact" className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent">Contact</a>
+      <div className="flex gap-2 sm:gap-4 items-center">
+        <a href="#features" className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent transition-colors duration-300">Features</a>
+        <a href="#contact" className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent transition-colors duration-300">Contact</a>
         <a 
           href="https://collabnest-dashboard.vercel.app" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-accent text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90"
+          className="bg-accent text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90 transition-colors duration-300"
         >
           Get Started
         </a>
         <button 
           onClick={toggleTheme} 
-          className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:scale-105 transition"
+          className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:scale-105 transition-transform duration-200"
         >
           {theme === 'dark' 
-            ? <Sun size={18} className="text-yellow-400" /> 
-            : <Moon size={18} className="text-gray-800" />
+            ? <Sun size={20} className="text-yellow-400" /> 
+            : <Moon size={20} className="text-gray-800" />
           }
         </button>
       </div>

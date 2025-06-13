@@ -12,7 +12,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-6xl font-extrabold leading-tight text-primary"
+          className="text-5xl md:text-6xl font-extrabold leading-tight text-primary dark:text-white"
         >
           Team Productivity, <span className="text-accent">Reimagined</span>.
         </motion.h1>
@@ -20,7 +20,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-6 text-lg md:text-xl text-gray-600 max-w-2xl"
+          className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl"
         >
           Collaborate, manage, and deliver tasks in real-time with lightning-fast updates and a beautiful interface.
         </motion.p>
@@ -35,13 +35,13 @@ const Hero = () => {
             href="https://collabnest-dashboard.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-accent text-white rounded-full text-lg font-semibold hover:bg-opacity-90 transition"
+            className="px-6 py-3 bg-accent text-white rounded-full text-lg font-semibold hover:bg-opacity-90 transition-colors duration-300"
           >
             Get Started
           </a>
           <a 
             href="#contact"
-            className="px-6 py-3 border-2 border-accent text-accent rounded-full text-lg font-semibold hover:bg-accent hover:text-white transition"
+            className="px-6 py-3 border-2 border-accent text-accent rounded-full text-lg font-semibold hover:bg-accent hover:text-white transition-all duration-300"
           >
             Contact Us
           </a>
