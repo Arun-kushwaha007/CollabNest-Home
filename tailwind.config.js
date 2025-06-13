@@ -1,5 +1,5 @@
-
 module.exports = {
+  darkMode: 'class', // <-- important!
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -11,7 +11,7 @@ module.exports = {
       },
       colors: {
         primary: '#1A202C',
-        accent: '#00bfa6',
+        accent: '#38bdf8', // updated accent color
       },
     },
   },
