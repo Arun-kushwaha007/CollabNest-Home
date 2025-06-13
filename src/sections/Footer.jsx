@@ -7,9 +7,9 @@ const Footer = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="bg-gray-100 dark:bg-gray-900 py-8 px-6 mt-12"
+      className="bg-gray-100 dark:bg-gray-900 py-8 px-6 mt-0.5"
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className=" max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="text-center md:text-left text-gray-700 dark:text-gray-300 text-sm">
           © {new Date().getFullYear()} <strong>CollabNest</strong>. All rights reserved.
         </div>

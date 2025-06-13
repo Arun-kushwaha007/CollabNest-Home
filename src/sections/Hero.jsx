@@ -40,7 +40,7 @@ const Hero = () => {
             href="https://collabnest-dashboard.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-accent text-white rounded-full text-lg font-semibold shadow-md hover:shadow-lg hover:bg-opacity-90 transition-all"
+            className="px-6 py-3 bg-accent text-white rounded-full text-lg font-semibold shadow-md hover:shadow-lg hover:bg-opacity-50 hover:bg-gray-800 transition-all"
           >
             Get Started
           </a>

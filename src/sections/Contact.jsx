@@ -50,11 +50,11 @@ const Contact = () => {
               className="w-full px-4 py-3 border dark:border-gray-600 rounded-lg outline-none focus:ring-2 focus:ring-accent resize-none bg-white dark:bg-gray-800 text-gray-900 dark:text-white dark:placeholder-gray-400 transition-colors duration-300"
             />
             <button
-              type="submit"
-              className="bg-accent text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300"
-            >
-              Send Message
-            </button>
+  type="submit"
+  className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow transition-all duration-300 hover:bg-opacity-90 hover:scale-105 hover:shadow-lg"
+>
+  Send Message
+</button>
           </form>
         )}
       </div>

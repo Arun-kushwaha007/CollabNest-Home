@@ -15,25 +15,35 @@ const Navbar = () => {
     >
       <h1 className="text-2xl font-bold text-primary dark:text-white">CollabNest</h1>
       <div className="flex gap-2 sm:gap-4 items-center">
-        <a href="#features" className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent transition-colors duration-300">Features</a>
-        <a href="#contact" className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent transition-colors duration-300">Contact</a>
+        <a
+  href="#features"
+  className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent transition-colors transition-transform duration-300 hover:scale-105"
+>
+  Features
+</a>
+<a
+  href="#contact"
+  className="text-sm text-gray-700 dark:text-gray-300 hover:text-accent transition-colors transition-transform duration-300 hover:scale-105"
+>
+  Contact
+</a>
         <a 
-          href="https://collabnest-dashboard.vercel.app" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-accent text-white px-4 py-2 rounded-lg text-sm hover:bg-opacity-90 transition-colors duration-300"
-        >
-          Get Started
-        </a>
-        <button 
-          onClick={toggleTheme} 
-          className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:scale-105 transition-transform duration-200"
-        >
-          {theme === 'dark' 
-            ? <Sun size={20} className="text-yellow-400" /> 
-            : <Moon size={20} className="text-gray-800" />
-          }
-        </button>
+  href="https://collabnest-dashboard.vercel.app" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="bg-accent text-white px-4 py-2 rounded-lg text-sm transition-all duration-300 shadow hover:shadow-lg hover:scale-105 hover:bg-opacity-90"
+>
+  Get Started
+</a>
+<button 
+  onClick={toggleTheme} 
+  className="ml-4 p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-all duration-200 hover:scale-110 hover:ring-2 hover:ring-accent focus:outline-none"
+>
+  {theme === 'dark' 
+    ? <Sun size={20} className="text-yellow-400" /> 
+    : <Moon size={20} className="text-gray-800" />
+  }
+</button>
       </div>
     </motion.nav>
   );
