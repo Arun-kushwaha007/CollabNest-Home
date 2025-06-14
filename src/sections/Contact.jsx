@@ -37,11 +37,12 @@ const Contact = () => {
 
         {submitted ? (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="text-orange-500 text-lg font-semibold"
+            transition={{ duration: 0.5 }}
+            className="text-orange-500 text-lg font-semibold bg-white dark:bg-gray-900 px-6 py-4 rounded-xl shadow-md inline-block"
           >
-            Thank you! We'll get back to you soon.
+            ✅ Thank you! We’ll get back to you soon.
           </motion.div>
         ) : (
           <motion.form
@@ -53,29 +54,34 @@ const Contact = () => {
             onSubmit={() => setSubmitted(true)}
             className="grid gap-6 text-left"
           >
+            {/* Name and Email */}
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
               <input
                 type="text"
                 name="name"
                 placeholder="Your Name"
                 required
-                className="flex-1 px-5 py-3 rounded-xl border dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-orange-400 transition duration-300"
+                className="flex-1 px-5 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Your Email"
                 required
-                className="flex-1 px-5 py-3 rounded-xl border dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-orange-400 transition duration-300"
+                className="flex-1 px-5 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
               />
             </div>
+
+            {/* Message */}
             <textarea
               name="message"
               rows="5"
               placeholder="Your Message"
               required
-              className="w-full px-5 py-3 rounded-xl border dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:ring-2 focus:ring-orange-400 resize-none transition duration-300"
+              className="w-full px-5 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none transition duration-300"
             />
+
+            {/* Submit Button */}
             <button
               type="submit"
               className="mt-2 w-full sm:w-auto px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-md hover:shadow-lg transition-transform transform hover:scale-105"

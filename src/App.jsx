@@ -4,6 +4,8 @@ import Hero from "./sections/Hero";
 import Features from "./sections/Features";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
+import FeatureGrid from "./components/FeatureGrid";
+import Workflow from "./components/Workflow";
 import "./App.css"; // Ensure you have this file for global styles
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -21,6 +23,8 @@ function App() {
         <Navbar />
         <Hero />
         <Features />
+        <FeatureGrid />
+        <Workflow />
         <Contact />
         <Footer />
       </motion.div>
