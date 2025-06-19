@@ -1,20 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import BgGradient from '../assets/gradient.svg';
 
+import Beams from '../animations/Beams';
 const Hero = () => {
   return (
     <section
       id="hero"
       className="relative w-full h-screen overflow-hidden bg-white dark:bg-black transition-colors duration-500"
     >
-      {/* Background gradient image */}
+      {/* Beams Background */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={BgGradient}
-          alt="gradient background"
-          className="w-full h-full object-cover"
-        />
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+          <Beams
+            beamWidth={2}
+            beamHeight={15}
+            beamNumber={12}
+            lightColor="#ffffff"
+            speed={2}
+            noiseIntensity={1.75}
+            scale={0.2}
+            rotation={30}
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent dark:from-black/80" />
       </div>
 
