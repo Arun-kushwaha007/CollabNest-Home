@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import HeroCanvas from '../canvas/HeroCanvas';
+import Cubes from '../animations/Cubes'; // adjust path if needed
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -10,12 +10,22 @@ const Contact = () => {
       id="contact"
       className="relative py-24 px-6 sm:px-10 bg-gradient-to-br from-white via-slate-50 to-slate-100 dark:from-black dark:via-gray-900 dark:to-gray-950 overflow-hidden transition-colors duration-500"
     >
-      {/* Background Canvas */}
+      {/* Cubes Background */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
-        <HeroCanvas />
+        <Cubes 
+          gridSize={8}
+          maxAngle={60}
+          radius={4}
+          borderStyle="2px dashed #fff"
+          faceColor="#1a1a2e"
+          rippleColor="#ff6b6b"
+          rippleSpeed={1.5}
+          autoAnimate={true}
+          rippleOnClick={true}
+        />
       </div>
 
-      {/* Content */}
+      {/* Contact Content */}
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -54,7 +64,6 @@ const Contact = () => {
             onSubmit={() => setSubmitted(true)}
             className="grid gap-6 text-left"
           >
-            {/* Name and Email */}
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
               <input
                 type="text"
@@ -72,7 +81,6 @@ const Contact = () => {
               />
             </div>
 
-            {/* Message */}
             <textarea
               name="message"
               rows="5"
@@ -81,7 +89,6 @@ const Contact = () => {
               className="w-full px-5 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none transition duration-300"
             />
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="mt-2 w-full sm:w-auto px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
