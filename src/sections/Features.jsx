@@ -29,10 +29,10 @@ const features = [
 
 const Features = () => {
   return (
-    <section
-      id="features"
-      className="relative py-24 px-6 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-black dark:via-black dark:to-zinc-600 transition-colors duration-500"
-    >
+   <section
+     id="features"
+     className="relative py-24 px-6 bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-black dark:via-zinc-950 dark:to-[#121212] transition-colors duration-500"
+   >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
         {/* Left Content */}
         <div className="text-left lg:w-1/2">
