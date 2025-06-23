@@ -38,18 +38,26 @@ const Workflow = () => {
   return (
     <section
       id="workflow"
-      className="py-24 px-6 bg-gradient-to-b from-gray-100 via-white to-gray-100 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950"
+      className="py-24 px-6 transition-colors duration-500"
+      style={{
+        background: 'linear-gradient(to bottom, var(--background), var(--card), var(--background))',
+        color: 'var(--foreground)',
+      }}
     >
       <div className="max-w-5xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl font-extrabold mb-4 text-gray-900 dark:text-white"
+          className="text-4xl sm:text-5xl font-extrabold mb-4"
+          style={{ color: 'var(--foreground)' }}
         >
-          How <span className="text-orange-400">CollabNest</span> Works
+          How <span style={{ color: 'var(--primary)' }}>CollabNest</span> Works
         </motion.h2>
-        <p className="text-gray-600 dark:text-gray-300 max-w-xl mx-auto mb-16">
+        <p
+          className="max-w-xl mx-auto mb-16 text-base sm:text-lg"
+          style={{ color: 'var(--muted-foreground)' }}
+        >
           From idea to execution — CollabNest simplifies your project lifecycle.
         </p>
 
@@ -66,15 +74,23 @@ const Workflow = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 max-w-md mx-auto shadow-md text-center"
+                className="rounded-2xl p-8 max-w-md mx-auto shadow-md text-center transition-colors duration-500"
+                style={{
+                  backgroundColor: 'var(--card)',
+                  color: 'var(--foreground)',
+                  border: '1px solid var(--border)',
+                }}
               >
-                <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-orange-100 dark:bg-orange-400/10 mx-auto mb-6">
-                  <Icon className="text-orange-500 dark:text-orange-400" size={28} />
+                <div
+                  className="flex items-center justify-center w-14 h-14 rounded-xl mx-auto mb-6"
+                  style={{ backgroundColor: 'rgba(255, 102, 102, 0.1)' }} // fallback: --primary with opacity
+                >
+                  <Icon style={{ color: 'var(--primary)' }} size={28} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                  {title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{desc}</p>
+                <h3 className="text-xl font-semibold mb-3">{title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
+                  {desc}
+                </p>
               </motion.div>
             </Step>
           ))}
