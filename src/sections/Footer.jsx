@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
 import ProfileCard from '../animations/ProfileCard';
+
 const Footer = () => {
   const [showCard, setShowCard] = useState(false);
 
@@ -14,36 +14,62 @@ const Footer = () => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="relative bg-gradient-to-tr from-gray-900 via-gray-950 to-black py-10 px-6 text-gray-400"
+      className="relative py-10 px-6 text-sm transition-colors duration-500"
+      style={{
+        background: 'linear-gradient(to top right, var(--background), var(--card), var(--background))',
+        color: 'var(--muted-foreground)',
+      }}
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 text-sm">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
         {/* Left: Copyright */}
         <div className="text-center md:text-left">
           © {new Date().getFullYear()}{' '}
-          <span className="text-white font-semibold tracking-wide">CollabNest</span>. All rights reserved.
+          <span style={{ color: 'var(--foreground)', fontWeight: 600 }}>
+            CollabNest
+          </span>{' '}
+          . All rights reserved.
         </div>
 
         {/* Right: Navigation Links */}
         <div className="flex flex-wrap justify-center md:justify-end gap-6 sm:gap-4">
-          <a href="#features" className="hover:text-orange-400 transition-colors duration-300">
+          <a
+            href="#features"
+            className="transition-colors duration-300"
+            style={{ color: 'var(--muted-foreground)' }}
+            onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+            onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
+          >
             Features
           </a>
-          <a href="#contact" className="hover:text-orange-400 transition-colors duration-300">
+          <a
+            href="#contact"
+            className="transition-colors duration-300"
+            style={{ color: 'var(--muted-foreground)' }}
+            onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+            onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
+          >
             Contact
           </a>
           <a
             href="https://collabnest-dashboard.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange-400 transition-colors duration-300"
+            className="transition-colors duration-300"
+            style={{ color: 'var(--muted-foreground)' }}
+            onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+            onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
           >
             Dashboard
           </a>
 
-          {/* Button instead of link */}
+          {/* Button to toggle profile card */}
           <button
             onClick={toggleCard}
-            className="bg-gradient-to-r from-orange-500 to-pink-500 text-white font-semibold px-4 py-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+            className="px-4 py-2 rounded-full font-semibold shadow-md transition-transform duration-300 hover:scale-105"
+            style={{
+              background: 'linear-gradient(to right, var(--primary), #ff66cc)',
+              color: 'var(--primary-foreground)',
+            }}
           >
             Created by Arun
           </button>
@@ -59,7 +85,7 @@ const Footer = () => {
             handle="arunk.codes"
             status="Online"
             contactText="Contact Me"
-            avatarUrl="../assets/avatar.png" 
+            avatarUrl="../assets/avatar.png"
             showUserInfo={true}
             enableTilt={true}
             onContactClick={() => console.log('Contact clicked')}
