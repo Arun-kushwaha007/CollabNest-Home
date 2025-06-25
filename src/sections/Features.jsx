@@ -93,7 +93,7 @@ const Features = () => {
                 key={index}
                 className="
                   bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100
-                  dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950
+                  dark:from-zinc-950 dark:via-[#121212] dark:to-zinc-950
                   text-[color:var(--card-foreground)] p-8 rounded-2xl shadow-lg border border-[color:var(--border)] max-w-sm mx-auto
                 "
               >

@@ -90,7 +90,7 @@ const FeatureGrid = () => (
             
               <div
                 className="rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between text-left  bg-gradient-to-br from-orange-100 via-pink-100 to-purple-100
-                                                dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950
+                                                dark:from-[#0d0d0d] dark:via-[#1a1a1a] dark:to-[#050505]
                                                 text-[color:var(--card-foreground)]  border border-[color:var(--border)] max-w-sm mx-auto"
                 style={{
                   backgroundColor: 'var(--card)',
