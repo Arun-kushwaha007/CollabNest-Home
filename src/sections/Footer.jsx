@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ProfileCard from '../animations/ProfileCard';
+import { Twitter, Github, Linkedin } from 'lucide-react'; // icons
 
 const Footer = () => {
-  const [showCard, setShowCard] = useState(false);
+  const [visitorCount, setVisitorCount] = useState(0);
 
-  const toggleCard = () => {
-    setShowCard((prev) => !prev);
-  };
+  useEffect(() => {
+    let currentCount = localStorage.getItem('visitorCount');
+    if (currentCount) {
+      currentCount = parseInt(currentCount, 10) + 1;
+    } else {
+      currentCount = 1;
+    }
+    localStorage.setItem('visitorCount', currentCount);
+    setVisitorCount(currentCount);
+  }, []);
 
   return (
     <motion.footer
@@ -20,78 +27,99 @@ const Footer = () => {
         color: 'var(--muted-foreground)',
       }}
     >
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
-        {/* Left: Copyright */}
-        <div className="text-center md:text-left">
-          © {new Date().getFullYear()}{' '}
-          <span style={{ color: 'var(--foreground)', fontWeight: 600 }}>
-            CollabNest
-          </span>{' '}
-          . All rights reserved.
+      <div className="max-w-6xl mx-auto flex flex-col gap-6 md:gap-4">
+        {/* Top: Main Row */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Copyright */}
+          <div className="text-center md:text-left">
+          
+            <span style={{ color: 'var(--foreground)', fontWeight: 600 }}>
+              CollabNest
+            </span>
+            <div className='pt-2'>
+
+            The new standard for collaborative <br/> productivity — sleek, fast, and delightful to use.
+            </div>
+          </div>
+
+          {/* Visitor Counter */}
+          <div className="text-center md:text-center">
+            <div className="text-center md:text-left">
+                        © {new Date().getFullYear()}{' '}
+                        <span style={{ color: 'var(--foreground)', fontWeight: 600 }}>
+                          CollabNest
+                        </span>{' '}
+                        . All rights reserved.
+                      </div>
+            Visitors: {visitorCount}
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex flex-wrap justify-center md:justify-end gap-6 sm:gap-4">
+            <a
+              href="#features"
+              className="transition-colors duration-300"
+              style={{ color: 'var(--muted-foreground)' }}
+              onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+              onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
+            >
+              Features
+            </a>
+            <a
+              href="#contact"
+              className="transition-colors duration-300"
+              style={{ color: 'var(--muted-foreground)' }}
+              onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+              onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
+            >
+              Contact
+            </a>
+            <a
+              href="https://collabnest-dashboard.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-300"
+              style={{ color: 'var(--muted-foreground)' }}
+              onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+              onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
+            >
+              Dashboard
+            </a>
+          </div>
         </div>
 
-        {/* Right: Navigation Links */}
-        <div className="flex flex-wrap justify-center md:justify-end gap-6 sm:gap-4">
+        {/* Bottom: Connect Section */}
+        <div className="flex justify-center md:justify-end gap-4 ">
+          {/* Connect */}
           <a
-            href="#features"
-            className="transition-colors duration-300"
-            style={{ color: 'var(--muted-foreground)' }}
-            onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
-            onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
-          >
-            Features
-          </a>
-          <a
-            href="#contact"
-            className="transition-colors duration-300"
-            style={{ color: 'var(--muted-foreground)' }}
-            onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
-            onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
-          >
-            Contact
-          </a>
-          <a
-            href="https://collabnest-dashboard.vercel.app"
+            href="https://x.com/Arunkush00?s=08"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors duration-300"
+            className="p-2 rounded-full hover:bg-[color:var(--accent)] transition-all duration-300"
             style={{ color: 'var(--muted-foreground)' }}
-            onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
-            onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
           >
-            Dashboard
+            <Twitter size={20} />
           </a>
-
-          {/* Button to toggle profile card */}
-          <button
-            onClick={toggleCard}
-            className="px-4 py-2 rounded-full font-semibold shadow-md transition-transform duration-300 hover:scale-105"
-            style={{
-              background: 'linear-gradient(to right, var(--primary), #ff66cc)',
-              color: 'var(--primary-foreground)',
-            }}
+          <a
+            href="https://github.com/Arun-kushwaha007"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full hover:bg-[color:var(--accent)] transition-all duration-300"
+            style={{ color: 'var(--muted-foreground)' }}
           >
-            Created by Arun
-          </button>
+            <Github size={20} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/arun-kushwaha-394b5a340/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full hover:bg-[color:var(--accent)] transition-all duration-300"
+            style={{ color: 'var(--muted-foreground)' }}
+          >
+            <Linkedin size={20} />
+          </a>
         </div>
       </div>
-
-      {/* Profile Card */}
-      {showCard && (
-        <div className="absolute bottom-28 right-6 z-50">
-          <ProfileCard
-            name="Arun Kushwaha"
-            title="Full Stack & DevOps Engineer"
-            handle="arunk.codes"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="../assets/avatar.png"
-            showUserInfo={true}
-            enableTilt={true}
-            onContactClick={() => console.log('Contact clicked')}
-          />
-        </div>
-      )}
     </motion.footer>
   );
 };

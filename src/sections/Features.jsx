@@ -82,7 +82,7 @@ const Features = () => {
         </div>
 
         {/* Right: CardSwap Carousel */}
-        <div className="lg:w-1/2 w-full" style={{ height: '500px', position: 'relative' }}>
+        <div className="lg:w-1/2 w-full" style={{ height: '500px', position: 'relative'  }}>
           <CardSwap
             cardDistance={60}
             verticalDistance={70}

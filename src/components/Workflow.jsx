@@ -64,7 +64,6 @@ const Workflow = () => {
         <Stepper
           initialStep={currentStep}
           onStepChange={(step) => setCurrentStep(step)}
-          onFinalStepCompleted={() => console.log('All steps completed!')}
           backButtonText="Previous"
           nextButtonText="Next"
         >

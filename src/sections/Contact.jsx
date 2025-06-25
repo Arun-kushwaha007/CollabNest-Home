@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Cubes from '../animations/Cubes';
+// import Cubes from '../animations/Cubes';
 
 import Threads from '../animations/Threads'; // Adjust the path if needed
 const Contact = () => {
