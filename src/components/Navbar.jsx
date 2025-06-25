@@ -35,7 +35,12 @@ const Navbar = () => {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 z-50 w-full px-6 md:px-10 py-4 flex justify-between items-center backdrop-blur-lg bg-white/70 dark:bg-black/60 border-b border-gray-200 dark:border-white/10 shadow-sm"
+      className="fixed top-0 z-50 w-full px-6 md:px-10 py-4 flex justify-between items-center backdrop-blur-lg shadow-sm border-b transition-colors duration-300"
+      style={{
+        backgroundColor: 'rgba(var(--background-rgb), 0.7)',
+        borderColor: 'var(--border)',
+        color: 'var(--foreground)',
+      }}
     >
       {/* Logo */}
       <a
@@ -51,8 +56,10 @@ const Navbar = () => {
           <a
             key={link.href}
             href={link.href}
-            className={`text-sm font-medium transition duration-200 hover:text-orange-500 dark:hover:text-orange-400 ${
-              activeSection === link.href ? 'text-orange-500 dark:text-orange-400 underline underline-offset-4' : 'text-gray-800 dark:text-gray-300'
+            className={`text-sm font-medium transition duration-200 underline-offset-4 ${
+              activeSection === link.href
+                ? 'underline text-[color:var(--primary)]'
+                : 'text-[color:var(--foreground)] hover:text-[color:var(--primary)]'
             }`}
           >
             {link.label}
@@ -67,38 +74,32 @@ const Navbar = () => {
         >
           Get Started
         </a>
-{/* 
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle Dark Mode"
-          className="ml-2 p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:scale-110 transition-all duration-300 ring-1 ring-transparent hover:ring-orange-400"
-        >
-          {theme === 'dark' ? (
-            <Sun size={18} className="text-yellow-400" />
-          ) : (
-            <Moon size={18} className="text-gray-800" />
-          )}
-        </button> */}
       </div>
 
-      {/* Mobile Menu Button */}
+      {/* Mobile Controls */}
       <div className="md:hidden flex items-center gap-2">
+        {/* Theme toggle */}
         <button
           onClick={toggleTheme}
           aria-label="Toggle Dark Mode"
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-800 hover:scale-110 transition-all duration-300 ring-1 ring-transparent hover:ring-orange-400"
+          className="p-2 rounded-full transition-all duration-300 ring-1 ring-transparent hover:ring-[color:var(--primary)]"
+          style={{
+            backgroundColor: 'var(--muted)',
+          }}
         >
           {theme === 'dark' ? (
-            <Sun size={18} className="text-yellow-400" />
+            <Sun size={18} style={{ color: '#facc15' }} />
           ) : (
-            <Moon size={18} className="text-gray-800" />
+            <Moon size={18} style={{ color: 'var(--foreground)' }} />
           )}
         </button>
 
+        {/* Mobile menu */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
-          className="p-2 rounded-full text-gray-800 dark:text-gray-200"
+          className="p-2 rounded-full"
+          style={{ color: 'var(--foreground)' }}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -111,7 +112,12 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 w-full bg-white dark:bg-gray-900 px-6 py-4 shadow-md border-t border-gray-200 dark:border-white/10 md:hidden"
+            className="absolute top-full left-0 w-full px-6 py-4 shadow-md border-t md:hidden transition-colors duration-300"
+            style={{
+              backgroundColor: 'var(--background)',
+              borderColor: 'var(--border)',
+              color: 'var(--foreground)',
+            }}
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map(link => (
@@ -119,8 +125,10 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`text-base font-medium transition duration-200 hover:text-orange-500 dark:hover:text-orange-400 ${
-                    activeSection === link.href ? 'text-orange-500 dark:text-orange-400 underline underline-offset-4' : 'text-gray-800 dark:text-gray-300'
+                  className={`text-base font-medium transition duration-200 underline-offset-4 ${
+                    activeSection === link.href
+                      ? 'underline text-[color:var(--primary)]'
+                      : 'text-[color:var(--foreground)] hover:text-[color:var(--primary)]'
                   }`}
                 >
                   {link.label}

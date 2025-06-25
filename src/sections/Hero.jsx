@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Beams from '../animations/Beams';
+import TextPressure from '../animations/TextPressue';
 
 const Hero = () => {
   return (
@@ -39,7 +40,19 @@ const Hero = () => {
           transition={{ duration: 1 }}
           className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent"
         >
-          Rethink Teamwork.
+          <TextPressure
+              text="Rethink_Teamwork"
+              flex={true}
+              alpha={false}
+              stroke={false}
+              width={true}
+              weight={true}
+              italic={true}
+              textColor="#ffffff"
+              strokeColor="#000000"
+              minFontSize={200}
+            />
+          
         </motion.h1>
 
         <motion.p

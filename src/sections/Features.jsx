@@ -4,6 +4,7 @@ import { Bolt, Users, CheckCircle, Database, Sun, Moon } from 'lucide-react';
 import { fadeIn } from '../utils/motion';
 import CardSwap, { Card } from '../animations/CardSwap';
 
+
 const features = [
   {
     icon: Bolt,
