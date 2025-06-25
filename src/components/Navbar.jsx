@@ -67,7 +67,7 @@ const Navbar = () => {
         >
           Get Started
         </a>
-
+{/* 
         <button
           onClick={toggleTheme}
           aria-label="Toggle Dark Mode"
@@ -78,7 +78,7 @@ const Navbar = () => {
           ) : (
             <Moon size={18} className="text-gray-800" />
           )}
-        </button>
+        </button> */}
       </div>
 
       {/* Mobile Menu Button */}

@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
 import Beams from '../animations/Beams';
+
 const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen overflow-hidden bg-white dark:bg-black transition-colors duration-500"
+      className="relative w-full h-screen overflow-hidden transition-colors duration-500"
+      style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}
     >
       {/* Beams Background */}
       <div className="absolute inset-0 z-0">
@@ -15,14 +16,19 @@ const Hero = () => {
             beamWidth={2}
             beamHeight={15}
             beamNumber={12}
-            lightColor="#ffffff"
+            lightColor="var(--foreground)"
             speed={2}
             noiseIntensity={1.75}
             scale={0.2}
             rotation={30}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent dark:from-black/80" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to top, rgba(var(--background-rgb), 0.8), transparent)',
+          }}
+        />
       </div>
 
       {/* Hero Content */}
@@ -40,7 +46,8 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-6 text-base sm:text-lg md:text-2xl text-gray-700 dark:text-gray-300 max-w-2xl"
+          className="mt-6 text-base sm:text-lg md:text-2xl max-w-2xl"
+          style={{ color: 'var(--muted-foreground)' }}
         >
           The new standard for collaborative productivity — sleek, fast, and delightful to use.
         </motion.p>
@@ -55,13 +62,29 @@ const Hero = () => {
             href="https://collabnest-dashboard.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300"
+            className="px-6 py-3 rounded-full font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300"
+            style={{
+              backgroundColor: 'var(--foreground)',
+              color: 'var(--background)',
+            }}
           >
             Get Started
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 border-2 border-black dark:border-white text-black dark:text-white rounded-full font-semibold hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-300"
+            className="px-6 py-3 border-2 rounded-full font-semibold transition-all duration-300"
+            style={{
+              borderColor: 'var(--foreground)',
+              color: 'var(--foreground)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--foreground)';
+              e.currentTarget.style.color = 'var(--background)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = 'var(--foreground)';
+            }}
           >
             Contact Us
           </a>
