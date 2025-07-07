@@ -47,7 +47,7 @@ const featureCards = [
 
 const FeatureGrid = () => (
   <section
-    id="feature-grid"
+    id="features"
     className="relative py-24 px-4 sm:px-8 transition-colors duration-500"
     style={{
       backgroundColor: 'var(--background)',
@@ -110,32 +110,78 @@ const FeatureGrid = () => (
               playOnce={false}
             >
               <div
-                className="rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between text-left backdrop-blur-sm border hover:border-opacity-50"
+                className="feature-card rounded-2xl p-6 shadow-md transition-all duration-300 h-full flex flex-col justify-between text-left backdrop-blur-sm border group cursor-pointer"
                 style={{
                   backgroundColor: 'var(--card)',
                   color: 'var(--card-foreground)',
                   border: '1px solid var(--border)',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                  boxShadow: 'var(--shadow-md)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-2xl)';
+                  e.currentTarget.style.borderColor = 'var(--primary)';
+                  e.currentTarget.style.backgroundColor = 'var(--accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+                  e.currentTarget.style.borderColor = 'var(--border)';
+                  e.currentTarget.style.backgroundColor = 'var(--card)';
                 }}
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
                     <div
-                      className="w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 hover:scale-110"
+                      className="icon-container w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
                       style={{ 
                         backgroundColor: 'var(--secondary)',
                         border: '1px solid var(--border)'
                       }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--primary)';
+                        e.currentTarget.style.borderColor = 'var(--primary)';
+                        e.currentTarget.style.transform = 'scale(1.15) rotate(12deg)';
+                        e.currentTarget.style.boxShadow = `0 8px 25px var(--primary)40`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--secondary)';
+                        e.currentTarget.style.borderColor = 'var(--border)';
+                        e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
                     >
-                      <Icon style={{ color: 'var(--primary)' }} size={24} />
+                      <Icon 
+                        className="feature-icon transition-all duration-300"
+                        style={{ color: 'var(--primary)' }} 
+                        size={24}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = 'var(--primary-foreground)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = 'var(--primary)';
+                        }}
+                      />
                     </div>
                     {badge && (
                       <span
-                        className="text-xs font-medium px-3 py-1 rounded-full"
+                        className="badge text-xs font-medium px-3 py-1 rounded-full transition-all duration-300 group-hover:scale-105"
                         style={{
                           backgroundColor: 'var(--secondary)',
                           color: 'var(--primary)',
                           border: '1px solid var(--border)',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = 'var(--primary)';
+                          e.currentTarget.style.color = 'var(--primary-foreground)';
+                          e.currentTarget.style.borderColor = 'var(--primary)';
+                          e.currentTarget.style.transform = 'scale(1.1)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = 'var(--secondary)';
+                          e.currentTarget.style.color = 'var(--primary)';
+                          e.currentTarget.style.borderColor = 'var(--border)';
+                          e.currentTarget.style.transform = 'scale(1)';
                         }}
                       >
                         {badge}
@@ -144,25 +190,54 @@ const FeatureGrid = () => (
                   </div>
 
                   <h3 
-                    className="text-lg font-semibold mb-3"
+                    className="feature-title text-lg font-semibold mb-3 transition-all duration-300 group-hover:text-primary"
                     style={{ color: 'var(--foreground)' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = 'var(--primary)';
+                      e.currentTarget.style.transform = 'translateX(4px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--foreground)';
+                      e.currentTarget.style.transform = 'translateX(0)';
+                    }}
                   >
                     {title}
                   </h3>
                   <p
-                    className="text-sm leading-relaxed"
+                    className="feature-description text-sm leading-relaxed transition-all duration-300"
                     style={{ color: 'var(--muted-foreground)' }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = 'var(--foreground)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--muted-foreground)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
                   >
                     {desc}
                   </p>
                 </div>
+
+                {/* Animated border effect */}
+                <div 
+                  className="animated-border absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 pointer-events-none"
+                  style={{
+                    background: `linear-gradient(45deg, var(--primary), var(--secondary), var(--primary))`,
+                    backgroundSize: '200% 200%',
+                    animation: 'gradient-shift 3s ease infinite',
+                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    maskComposite: 'exclude',
+                    padding: '2px',
+                  }}
+                />
               </div>
             </GlareHover>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Call to Action */}
+      {/* Call to Action with Enhanced Hover */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -173,17 +248,69 @@ const FeatureGrid = () => (
           href="https://collabnest-dashboard.vercel.app"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+          className="cta-button inline-flex items-center px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 relative overflow-hidden group"
           style={{
             backgroundColor: 'var(--primary)',
             color: 'var(--primary-foreground)',
-            boxShadow: '0 4px 20px rgba(255, 123, 0, 0.3)',
+            boxShadow: 'var(--shadow-lg)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-2xl)';
+            e.currentTarget.style.filter = 'brightness(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0) scale(1)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+            e.currentTarget.style.filter = 'brightness(1)';
           }}
         >
-          Try All Features →
+          {/* Animated background overlay */}
+          <span 
+            className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+            style={{
+              background: `linear-gradient(45deg, var(--secondary), var(--primary), var(--secondary))`,
+              backgroundSize: '200% 200%',
+              animation: 'gradient-shift 2s ease infinite',
+            }}
+          />
+          <span className="relative z-10">Try All Features →</span>
         </a>
       </motion.div>
     </div>
+
+    {/* Add CSS for animations */}
+    <style jsx>{`
+      @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      
+      .feature-card {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--primary)20,
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+      
+      .feature-card:hover::before {
+        left: 100%;
+      }
+    `}</style>
   </section>
 );
 

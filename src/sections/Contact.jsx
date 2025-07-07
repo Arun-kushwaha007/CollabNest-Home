@@ -1,146 +1,204 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-// import Cubes from '../animations/Cubes';
+import Threads from '../animations/Threads';
 
-import Threads from '../animations/Threads'; // Adjust the path if needed
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <section
       id="contact"
-      className="relative py-24 px-6 sm:px-10 overflow-hidden transition-colors duration-500"
+      className="relative py-24 px-6 sm:px-10 overflow-hidden min-h-screen flex items-center transition-colors duration-500"
       style={{
-        background: 'linear-gradient(to bottom right, var(--background), var(--card))',
+        backgroundColor: 'var(--background)',
         color: 'var(--foreground)',
       }}
     >
-      {/* Background Layers */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
-        {/* DotGrid Background */}
+      {/* Background Animation */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
         <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
-          
-           <Threads
-    amplitude={1}
-    distance={0}
-    enableMouseInteraction={true}
-  />
+          <Threads
+            amplitude={1}
+            distance={0}
+            enableMouseInteraction={true}
+          />
         </div>
-
-        {/* Cubes Overlay */}
-        {/* <Cubes
-          gridSize={8}
-          maxAngle={60}
-          radius={4}
-          borderStyle="2px dashed var(--foreground)"
-          faceColor="var(--card)"
-          rippleColor="var(--primary)"
-          rippleSpeed={1.5}
-          autoAnimate={true}
-          rippleOnClick={true}
-        /> */}
+        {/* Subtle overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
       </div>
 
-      {/* Foreground Content */}
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold mb-6"
-          style={{ color: 'var(--foreground)' }}
-        >
-          Get in Touch
-        </motion.h2>
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, var(--primary) 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-lg mb-12"
-          style={{ color: 'var(--muted-foreground)' }}
-        >
-          Have questions, ideas, or partnership proposals? We’d love to hear from you.
-        </motion.p>
-
-        {submitted ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="text-lg font-semibold px-6 py-4 rounded-xl shadow-md inline-block"
-            style={{
-              backgroundColor: 'var(--card)',
-              color: 'var(--primary)',
-            }}
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto w-full">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6"
+            style={{ color: 'var(--foreground)' }}
           >
-            ✅ Thank you! We’ll get back to you soon.
-          </motion.div>
-        ) : (
-          <motion.form
+            Get in{' '}
+            <span 
+              className="relative inline-block"
+              style={{ color: 'var(--primary)' }}
+            >
+              Touch
+              <div 
+                className="absolute -bottom-2 left-0 w-full h-1 rounded-full"
+                style={{ backgroundColor: 'var(--primary)', opacity: 0.3 }}
+              />
+            </span>
+          </motion.h2>
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            action="https://formspree.io/f/xvgrandy"
-            method="POST"
-            onSubmit={() => setSubmitted(true)}
-            className="grid gap-6 text-left"
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--muted-foreground)' }}
           >
-            <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required
-                className="flex-1 px-5 py-3 rounded-xl shadow-sm transition duration-300 focus:outline-none focus:ring-2"
-                style={{
-                  backgroundColor: 'var(--card)',
-                  color: 'var(--foreground)',
-                  border: '1px solid var(--border)',
-                  '--tw-ring-color': 'var(--primary)',
-                }}
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required
-                className="flex-1 px-5 py-3 rounded-xl shadow-sm transition duration-300 focus:outline-none focus:ring-2"
-                style={{
-                  backgroundColor: 'var(--card)',
-                  color: 'var(--foreground)',
-                  border: '1px solid var(--border)',
-                  '--tw-ring-color': 'var(--primary)',
-                }}
-              />
-            </div>
+            Have questions, ideas, or partnership proposals? We'd love to hear from you and make something amazing together.
+          </motion.p>
+        </div>
 
-            <textarea
-              name="message"
-              rows="5"
-              placeholder="Your Message"
-              required
-              className="w-full px-5 py-3 rounded-xl shadow-sm resize-none transition duration-300 focus:outline-none focus:ring-2"
-              style={{
-                backgroundColor: 'var(--card)',
-                color: 'var(--foreground)',
-                border: '1px solid var(--border)',
-                '--tw-ring-color': 'var(--primary)',
-              }}
-            />
-
-            <button
-              type="submit"
-              className="mt-2 w-full sm:w-auto px-6 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg transition-transform transform hover:scale-105"
-              style={{
-                backgroundColor: 'var(--primary)',
-                color: 'var(--primary-foreground)',
-              }}
+        {/* Form Container */}
+        <div 
+          className="backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border"
+          style={{ 
+            backgroundColor: 'var(--card)',
+            borderColor: 'var(--border)',
+            boxShadow: 'var(--shadow-2xl)'
+          }}
+        >
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-center py-12"
             >
-              Send Message
-            </button>
-          </motion.form>
-        )}
+              <div 
+                className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
+                style={{ backgroundColor: 'var(--primary)', opacity: 0.1 }}
+              >
+                <span className="text-2xl">✅</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>
+                Thank You!
+              </h3>
+              <p style={{ color: 'var(--muted-foreground)' }}>
+                We'll get back to you soon.
+              </p>
+            </motion.div>
+          ) : (
+            <motion.form
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              action="https://formspree.io/f/xvgrandy"
+              method="POST"
+              onSubmit={() => setSubmitted(true)}
+              className="space-y-8"
+            >
+              {/* Name and Email Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="relative">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    required
+                    className="w-full px-6 py-4 rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 border"
+                    style={{
+                      backgroundColor: 'var(--accent)',
+                      color: 'var(--foreground)',
+                      border: '1px solid var(--border)',
+                      '--tw-ring-color': 'var(--primary)',
+                    }}
+                  />
+                </div>
+                <div className="relative">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    required
+                    className="w-full px-6 py-4 rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 border"
+                    style={{
+                      backgroundColor: 'var(--accent)',
+                      color: 'var(--foreground)',
+                      border: '1px solid var(--border)',
+                      '--tw-ring-color': 'var(--primary)',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="relative">
+                <textarea
+                  name="message"
+                  rows="6"
+                  placeholder="Your Message"
+                  required
+                  className="w-full px-6 py-4 rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 resize-none border"
+                  style={{
+                    backgroundColor: 'var(--accent)',
+                    color: 'var(--foreground)',
+                    border: '1px solid var(--border)',
+                    '--tw-ring-color': 'var(--primary)',
+                  }}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  style={{
+                    backgroundColor: 'var(--primary)',
+                    color: 'var(--primary-foreground)',
+                    boxShadow: 'var(--shadow-lg)',
+                  }}
+                >
+                  Send Message
+                </button>
+              </div>
+            </motion.form>
+          )}
+        </div>
+
+        {/* Contact Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="mt-16 text-center"
+        >
+          <div className="flex flex-wrap justify-center gap-8 text-sm" style={{ color: 'var(--muted-foreground)' }}>
+            <div className="flex items-center gap-2">
+              <span style={{ color: 'var(--primary)' }}>✉️</span>
+              <span>arunsk1310@gmail.com</span>
+            </div>
+            <div className="flex items-center gap-2">
+              {/* <span style={{ color: 'var(--primary)' }}>📞</span> */}
+              {/* <span>+1 (555) 123-4567</span> */}
+            </div>
+            <div className="flex items-center gap-2">
+              <span style={{ color: 'var(--primary)' }}>📍</span>
+              <span>NIT Hamirpur, HP</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

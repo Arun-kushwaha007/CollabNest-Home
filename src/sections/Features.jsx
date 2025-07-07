@@ -65,7 +65,7 @@ const Features = () => {
       </div>
 
       {/* Optional Theme Toggle */}
-      <button
+      {/* <button
         onClick={toggleTheme}
         className="absolute top-6 right-6 z-10 p-3 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
         style={{
@@ -75,7 +75,7 @@ const Features = () => {
         }}
       >
         {isDark ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
+      </button> */}
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
         {/* Left Content */}
