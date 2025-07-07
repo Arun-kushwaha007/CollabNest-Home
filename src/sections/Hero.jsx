@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Beams from '../animations/Beams';
 import TextPressure from '../animations/TextPressue';
+import GlareHover from '../animations/GlareHover';
 
 const Hero = () => {
   return (
@@ -17,7 +18,7 @@ const Hero = () => {
             beamWidth={2}
             beamHeight={15}
             beamNumber={12}
-            lightColor="var(--foreground)"
+            lightColor="var(--primary)"
             speed={2}
             noiseIntensity={1.75}
             scale={0.2}
@@ -27,7 +28,7 @@ const Hero = () => {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to top, rgba(var(--background-rgb), 0.8), transparent)',
+            background: 'linear-gradient(to top, var(--background) 0%, transparent 50%)',
           }}
         />
       </div>
@@ -38,69 +39,120 @@ const Hero = () => {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent"
+          className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6"
+          style={{ color: 'var(--primary)' }}
         >
           <TextPressure
-              text="Rethink_Teamwork"
-              flex={true}
-              alpha={false}
-              stroke={false}
-              width={true}
-              weight={true}
-              italic={true}
-              textColor="#ffffff"
-              strokeColor="#000000"
-              minFontSize={200}
-            />
-          
+            text="Rethink_Teamwork"
+            flex={true}
+            alpha={false}
+            stroke={false}
+            width={true}
+            weight={true}
+            italic={true}
+            textColor="var(--primary)"
+            strokeColor="var(--border)"
+            minFontSize={200}
+          />
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-6 text-base sm:text-lg md:text-2xl max-w-2xl"
+          className="mt-6 text-lg sm:text-xl md:text-2xl max-w-3xl leading-relaxed"
           style={{ color: 'var(--muted-foreground)' }}
         >
           The new standard for collaborative productivity — sleek, fast, and delightful to use.
         </motion.p>
 
+       <motion.div
+         className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 w-full max-w-md mx-auto"
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ delay: 0.8, duration: 0.7 }}
+       >
+         {/* <GlareHover
+           glareColor="var(--primary)"
+           glareOpacity={0.3}
+           glareAngle={-30}
+           glareSize={300}
+           transitionDuration={800}
+           playOnce={false}
+         > */}
+           <button
+             onClick={() => window.open('https://collabnest-dashboard.vercel.app', '_blank')}
+             className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl text-center border-0 cursor-pointer"
+             style={{
+               backgroundColor: 'var(--primary)',
+               color: 'var(--primary-foreground)',
+               boxShadow: 'var(--shadow-lg)',
+             }}
+           >
+             Get Started
+           </button>
+         {/* </GlareHover> */}
+         
+         {/* <GlareHover
+           glareColor="var(--primary)"
+           glareOpacity={0.2}
+           glareAngle={-30}
+           glareSize={300}
+           transitionDuration={800}
+           playOnce={false}
+         > */}
+           <button
+             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+             className="w-full sm:w-auto px-8 py-4 border-2 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 text-center cursor-pointer"
+             style={{
+               borderColor: 'var(--border)',
+               color: 'var(--foreground)',
+               backgroundColor: 'transparent',
+             }}
+             onMouseEnter={(e) => {
+               e.currentTarget.style.backgroundColor = 'var(--primary)';
+               e.currentTarget.style.color = 'var(--primary-foreground)';
+               e.currentTarget.style.borderColor = 'var(--primary)';
+             }}
+             onMouseLeave={(e) => {
+               e.currentTarget.style.backgroundColor = 'transparent';
+               e.currentTarget.style.color = 'var(--foreground)';
+               e.currentTarget.style.borderColor = 'var(--border)';
+             }}
+           >
+             Contact Us
+           </button>
+         {/* </GlareHover> */}
+       </motion.div>
+        {/* Additional Info */}
         <motion.div
-          className="mt-10 flex flex-wrap justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.7 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="mt-16 flex flex-wrap justify-center items-center gap-8 text-sm"
+          style={{ color: 'var(--muted-foreground)' }}
         >
-          <a
-            href="https://collabnest-dashboard.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300"
-            style={{
-              backgroundColor: 'var(--foreground)',
-              color: 'var(--background)',
-            }}
-          >
-            Get Started
-          </a>
-          <a
-            href="#contact"
-            className="px-6 py-3 border-2 rounded-full font-semibold transition-all duration-300"
-            style={{
-              borderColor: 'var(--foreground)',
-              color: 'var(--foreground)',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--foreground)';
-              e.currentTarget.style.color = 'var(--background)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.color = 'var(--foreground)';
-            }}
-          >
-            Contact Us
-          </a>
+          <div className="flex items-center gap-2">
+            <div 
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: 'var(--primary)' }}
+            />
+            <span>Real-time Collaboration</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div 
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: 'var(--primary)' }}
+            />
+            <span>AI-Powered Insights</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div 
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: 'var(--primary)' }}
+            />
+            <span>Enterprise Security</span>
+          </div>
         </motion.div>
       </div>
     </section>
