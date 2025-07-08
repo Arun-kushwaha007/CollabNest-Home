@@ -12,9 +12,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/Arun-kushwaha007/CollabNest-Home?style=for-the-badge" alt="License">
+  <!-- <img src="https://img.shields.io/github/license/Arun-kushwaha007/CollabNest-Home?style=for-the-badge" alt="License"> -->
   <img src="https://img.shields.io/github/stars/Arun-kushwaha007/CollabNest-Home?style=for-the-badge" alt="Stars">
   <img src="https://img.shields.io/github/forks/Arun-kushwaha007/CollabNest-Home?style=for-the-badge" alt="Forks">
+  
 </p>
 
 <br />
@@ -28,7 +29,7 @@
 </p>
 
 <p align="center">
-  <a href="#-demo">🎥 Demo</a> •
+  <!-- <a href="#-demo">🎥 Demo</a> • -->
   <a href="#-quick-start">🚀 Quick Start</a> •
   <a href="#-features">✨ Features</a> •
   <a href="#-main-platform">🏢 Main Platform</a> •
@@ -36,6 +37,12 @@
 </p>
 
 </div>
+
+---
+### **🔗 Related Repositories and Links**
+- 🏠 **Landing Page:** [CollabNest-Home](https://github.com/Arun-kushwaha007/CollabNest-Home) (Current Repository)
+- 🏢 **Main Platform:** [CollabNest Platform](https://github.com/Arun-kushwaha007/Deadline.git) (Full Application)
+- 🎬 **Live Platform:** [CollabNest](https://collab-nest-home.vercel.app/) (Live Application)
 
 ---
 
