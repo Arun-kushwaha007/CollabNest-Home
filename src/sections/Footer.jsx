@@ -128,7 +128,8 @@ const Footer = () => {
                   Contact
                 </a>
               </div>
-              <div>
+              <div>      
+              
                 <a
                   href="https://collabnest-iota.vercel.app/"
                   target="_blank"
@@ -137,8 +138,21 @@ const Footer = () => {
                   style={{ color: 'var(--muted-foreground)' }}
                   onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
                   onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
-                >
+                  >
                   Dashboard
+                </a>
+              </div>
+                  <div>
+                <a
+                  href="https://github.com/Arun-kushwaha007/CollabNest-Home.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors duration-300 hover:underline"
+                  style={{ color: 'var(--muted-foreground)' }}
+                  onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
+                  onMouseLeave={(e) => (e.target.style.color = 'var(--muted-foreground)')}
+                >
+                  Code
                 </a>
               </div>
             </div>
