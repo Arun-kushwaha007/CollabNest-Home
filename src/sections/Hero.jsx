@@ -35,11 +35,12 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 text-center">
+        {/* Desktop Version */}
         <motion.h1
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6"
+          className="hidden md:block text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6"
           style={{ color: 'var(--primary)' }}
         >
           <TextPressure
@@ -53,6 +54,28 @@ const Hero = () => {
             textColor="var(--primary)"
             strokeColor="var(--border)"
             minFontSize={200}
+          />
+        </motion.h1>
+
+        {/* Mobile Version */}
+        <motion.h1
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="block md:hidden text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-6"
+          style={{ color: 'var(--primary)' }}
+        >
+          <TextPressure
+            text="Rethink_Teamwork"
+            flex={true}
+            alpha={false}
+            stroke={false}
+            width={true}
+            weight={true}
+            italic={true}
+            textColor="var(--primary)"
+            strokeColor="var(--border)"
+            minFontSize={60}
           />
         </motion.h1>
 
@@ -72,64 +95,47 @@ const Hero = () => {
          animate={{ opacity: 1, y: 0 }}
          transition={{ delay: 0.8, duration: 0.7 }}
        >
-         {/* <GlareHover
-           glareColor="var(--primary)"
-           glareOpacity={0.3}
-           glareAngle={-30}
-           glareSize={300}
-           transitionDuration={800}
-           playOnce={false}
-         > */}
-           <button
-             onClick={() => window.open('https://collabnest-dashboard.vercel.app', '_blank')}
-             className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl text-center border-0 cursor-pointer"
-             style={{
-               backgroundColor: 'var(--primary)',
-               color: 'var(--primary-foreground)',
-               boxShadow: 'var(--shadow-lg)',
-             }}
-           >
-             Get Started
-           </button>
-         {/* </GlareHover> */}
+         <button
+           onClick={() => window.open('https://collabnest-dashboard.vercel.app', '_blank')}
+           className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl text-center border-0 cursor-pointer"
+           style={{
+             backgroundColor: 'var(--primary)',
+             color: 'var(--primary-foreground)',
+             boxShadow: 'var(--shadow-lg)',
+           }}
+         >
+           Get Started
+         </button>
          
-         {/* <GlareHover
-           glareColor="var(--primary)"
-           glareOpacity={0.2}
-           glareAngle={-30}
-           glareSize={300}
-           transitionDuration={800}
-           playOnce={false}
-         > */}
-           <button
-             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-             className="w-full sm:w-auto px-8 py-4 border-2 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 text-center cursor-pointer"
-             style={{
-               borderColor: 'var(--border)',
-               color: 'var(--foreground)',
-               backgroundColor: 'transparent',
-             }}
-             onMouseEnter={(e) => {
-               e.currentTarget.style.backgroundColor = 'var(--primary)';
-               e.currentTarget.style.color = 'var(--primary-foreground)';
-               e.currentTarget.style.borderColor = 'var(--primary)';
-             }}
-             onMouseLeave={(e) => {
-               e.currentTarget.style.backgroundColor = 'transparent';
-               e.currentTarget.style.color = 'var(--foreground)';
-               e.currentTarget.style.borderColor = 'var(--border)';
-             }}
-           >
-             Contact Us
-           </button>
-         {/* </GlareHover> */}
+         <button
+           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+           className="w-full sm:w-auto px-8 py-4 border-2 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 text-center cursor-pointer"
+           style={{
+             borderColor: 'var(--border)',
+             color: 'var(--foreground)',
+             backgroundColor: 'transparent',
+           }}
+           onMouseEnter={(e) => {
+             e.currentTarget.style.backgroundColor = 'var(--primary)';
+             e.currentTarget.style.color = 'var(--primary-foreground)';
+             e.currentTarget.style.borderColor = 'var(--primary)';
+           }}
+           onMouseLeave={(e) => {
+             e.currentTarget.style.backgroundColor = 'transparent';
+             e.currentTarget.style.color = 'var(--foreground)';
+             e.currentTarget.style.borderColor = 'var(--border)';
+           }}
+         >
+           Contact Us
+         </button>
        </motion.div>
+
         {/* Additional Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.6 }}
-          className="mt-16 flex flex-wrap justify-center items-center gap-8 text-sm"
+          className="mt-16 flex flex-wrap justify-center items-center gap-4 md:gap-8 text-sm px-4"
           style={{ color: 'var(--muted-foreground)' }}
         >
           <div className="flex items-center gap-2">
