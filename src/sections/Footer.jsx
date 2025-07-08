@@ -130,7 +130,7 @@ const Footer = () => {
               </div>
               <div>
                 <a
-                  href="https://collabnest-dashboard.vercel.app"
+                  href="https://collabnest-iota.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors duration-300 hover:underline"

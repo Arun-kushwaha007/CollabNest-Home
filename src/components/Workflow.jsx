@@ -170,7 +170,7 @@ const Workflow = () => {
           className="mt-16"
         >
           <a
-            href="https://collabnest-dashboard.vercel.app"
+            href="https://collabnest-iota.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"

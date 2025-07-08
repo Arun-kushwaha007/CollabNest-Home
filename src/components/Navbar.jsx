@@ -167,7 +167,7 @@ const Navbar = () => {
 
         {/* CTA Button */}
         <a
-          href="https://collabnest-dashboard.vercel.app"
+          href="https://collabnest-iota.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="px-6 py-2 rounded-full text-sm font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
@@ -276,7 +276,7 @@ const Navbar = () => {
 
               {/* Mobile CTA Button */}
               <a
-                href="https://collabnest-dashboard.vercel.app"
+                href="https://collabnest-iota.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full text-sm font-semibold text-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 mt-2"
