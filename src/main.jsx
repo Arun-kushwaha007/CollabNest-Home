@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import RoutedApp from './App.jsx' // Changed to import RoutedApp
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RoutedApp /> {/* Changed to render RoutedApp */}
   </StrictMode>,
 )

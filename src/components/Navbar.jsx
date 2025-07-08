@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import useDarkMode from '../hooks/useDarkMode';
 
 const navLinks = [
+   { href: '/', label: 'Home' },
   { href: '#features', label: 'Features' },
   { href: '#workflow', label: 'Workflow' },
   { href: '/about', label: 'About Me', isRoute: true },
