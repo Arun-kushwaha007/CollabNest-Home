@@ -16,6 +16,8 @@ import {
   Calendar,
   Target
 } from 'lucide-react';
+import avatarImage from '../assets/avatar.png'
+import Arun from '../assets/arun1.png'; 
 
 const AboutMe = () => {
   const stats = [
@@ -129,7 +131,7 @@ const AboutMe = () => {
               style={{ borderColor: 'var(--primary)' }}
             >
               <img 
-                src="https://avatars.githubusercontent.com/u/86913097?v=4" 
+                src={Arun}
                 alt="Arun Kushwaha"
                 className="w-full h-full object-cover"
               />
@@ -225,37 +227,43 @@ const AboutMe = () => {
         </motion.div>
 
         {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
-        >
-          {stats.map(({ label, value, icon: Icon }, index) => (
-            <div
-              key={index}
-              className="text-center p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105"
-              style={{
-                backgroundColor: 'var(--card)',
-                borderColor: 'var(--border)',
-                boxShadow: 'var(--shadow-md)',
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+      >
+        {stats.map(({ label, value, icon: Icon }, index) => (
+          <div
+            key={index}
+            className="text-center p-6 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-105"
+            style={{
+              backgroundColor: 'var(--card)',
+              borderColor: 'var(--border)',
+              boxShadow: 'var(--shadow-md)',
+            }}
+          >
+            <div 
+              className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center"
+              style={{ 
+                backgroundColor: 'var(--accent)',  // Changed to accent color
+                border: '2px solid var(--primary)'  // Added border for better visibility
               }}
             >
-              <div 
-                className="w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: 'var(--primary)', opacity: 0.1 }}
-              >
-                <Icon size={24} style={{ color: 'var(--primary)' }} />
-              </div>
-              <div className="text-2xl font-bold mb-2" style={{ color: 'var(--primary)' }}>
-                {value}
-              </div>
-              <div className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
-                {label}
-              </div>
+              <Icon 
+                size={24} 
+                style={{ color: 'var(--primary)' }} 
+              />
             </div>
-          ))}
-        </motion.div>
+            <div className="text-2xl font-bold mb-2" style={{ color: 'var(--primary)' }}>
+              {value}
+            </div>
+            <div className="text-sm" style={{ color: 'var(--muted-foreground)' }}>
+              {label}
+            </div>
+          </div>
+        ))}
+      </motion.div>
 
         {/* About Content */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
