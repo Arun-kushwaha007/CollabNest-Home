@@ -63,7 +63,7 @@ const Footer = () => {
               The new standard for collaborative productivity — sleek, fast, and delightful to use.
             </p>
             {/* Visitor Counter */}
-            <div 
+            {/* <div 
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs"
               style={{ 
                 backgroundColor: 'var(--accent)',
@@ -72,7 +72,7 @@ const Footer = () => {
             >
               <Heart size={12} />
               <span>{visitorCount.toLocaleString()} visitors</span>
-            </div>
+            </div> */}
           </div>
 
           {/* Quick Links */}
