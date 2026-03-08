@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useDarkMode from '../hooks/useDarkMode';
 
 const navLinks = [
-   { href: '/', label: 'Home' },
+  { href: '/', label: 'Home', isRoute: true },
   { href: '#features', label: 'Features' },
   { href: '#workflow', label: 'Workflow' },
   { href: '/about', label: 'About Me', isRoute: true },
@@ -17,43 +17,64 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const location = useLocation();
+  const navigate = useNavigate();
+  const tickingRef = useRef(false);
+  const sectionLinks = useMemo(
+    () => navLinks.filter(link => link.href.startsWith('#')),
+    []
+  );
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (location.pathname !== '/') return; // Only track scroll on home page
-      
-      const sections = navLinks
-        .filter(link => !link.isRoute)
-        .map(link => document.querySelector(link.href));
+    if (location.pathname !== '/') return undefined;
+
+    const sections = sectionLinks
+      .map(link => ({ href: link.href, node: document.getElementById(link.href.slice(1)) }))
+      .filter(section => section.node);
+
+    const updateActiveSection = () => {
       const scrollY = window.scrollY + 100;
-      
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollY) {
-          setActiveSection(navLinks.find(link => !link.isRoute && document.querySelector(link.href) === section)?.href);
+      let nextActive = '';
+      for (let i = sections.length - 1; i >= 0; i -= 1) {
+        if (sections[i].node.offsetTop <= scrollY) {
+          nextActive = sections[i].href;
           break;
         }
       }
+      setActiveSection(prev => (prev === nextActive ? prev : nextActive));
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+    const handleScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      requestAnimationFrame(() => {
+        updateActiveSection();
+        tickingRef.current = false;
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [location.pathname, sectionLinks]);
 
   // Set active section based on current route
   useEffect(() => {
     if (location.pathname === '/about') {
-      setActiveSection('/about');
+      setActiveSection(location.pathname);
     } else if (location.pathname === '/') {
       setActiveSection('');
     }
   }, [location.pathname]);
 
-  const handleNavClick = (href, isRoute) => {
+  const handleNavClick = (event, href, isRoute) => {
     setIsOpen(false);
     if (!isRoute && location.pathname !== '/') {
-      // If clicking on a section link but not on home page, navigate to home first
-      window.location.href = '/' + href;
+      event.preventDefault();
+      navigate({ pathname: '/', hash: href });
     }
   };
 
@@ -114,7 +135,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              onClick={() => handleNavClick(link.href, false)}
+              onClick={(e) => handleNavClick(e, link.href, false)}
               className={`text-sm font-medium transition-all duration-200 underline-offset-4 px-3 py-2 rounded-lg ${
                 isActive ? 'underline' : 'hover:underline'
               }`}
@@ -245,7 +266,7 @@ const Navbar = () => {
                   <Link
                     key={link.href}
                     to={link.href}
-                    onClick={() => handleNavClick(link.href, true)}
+                    onClick={(e) => handleNavClick(e, link.href, true)}
                     className={`text-base font-medium transition-all duration-200 underline-offset-4 px-4 py-3 rounded-lg ${
                       isActive ? 'underline' : 'hover:underline'
                     }`}
@@ -260,7 +281,7 @@ const Navbar = () => {
                   <a
                     key={link.href}
                     href={link.href}
-                    onClick={() => handleNavClick(link.href, false)}
+                    onClick={(e) => handleNavClick(e, link.href, false)}
                     className={`text-base font-medium transition-all duration-200 underline-offset-4 px-4 py-3 rounded-lg ${
                       isActive ? 'underline' : 'hover:underline'
                     }`}

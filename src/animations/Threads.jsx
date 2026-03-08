@@ -127,6 +127,7 @@ const Threads = ({
 }) => {
   const containerRef = useRef(null);
   const animationFrameId = useRef();
+  const isInViewportRef = useRef(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -188,6 +189,8 @@ const Threads = ({
       container.addEventListener("mouseleave", handleMouseLeave);
     }
 
+    const shouldAnimate = () => isInViewportRef.current && !document.hidden;
+
     function update(t) {
       if (enableMouseInteraction) {
         const smoothing = 0.05;
@@ -202,14 +205,45 @@ const Threads = ({
       program.uniforms.iTime.value = t * 0.001;
 
       renderer.render({ scene: mesh });
-      animationFrameId.current = requestAnimationFrame(update);
+      if (shouldAnimate()) {
+        animationFrameId.current = requestAnimationFrame(update);
+      } else {
+        animationFrameId.current = undefined;
+      }
     }
-    animationFrameId.current = requestAnimationFrame(update);
+
+    const startLoop = () => {
+      if (!shouldAnimate() || animationFrameId.current) return;
+      animationFrameId.current = requestAnimationFrame(update);
+    };
+
+    const stopLoop = () => {
+      if (!animationFrameId.current) return;
+      cancelAnimationFrame(animationFrameId.current);
+      animationFrameId.current = undefined;
+    };
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isInViewportRef.current = entry.isIntersecting;
+        if (shouldAnimate()) startLoop();
+        else stopLoop();
+      },
+      { threshold: 0.05 }
+    );
+    intersectionObserver.observe(container);
+
+    const handleVisibilityChange = () => {
+      if (shouldAnimate()) startLoop();
+      else stopLoop();
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      if (animationFrameId.current)
-        cancelAnimationFrame(animationFrameId.current);
+      stopLoop();
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      intersectionObserver.disconnect();
 
       if (enableMouseInteraction) {
         container.removeEventListener("mousemove", handleMouseMove);

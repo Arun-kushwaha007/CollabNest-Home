@@ -16,7 +16,6 @@ import {
   Calendar,
   Target
 } from 'lucide-react';
-import avatarImage from '../assets/avatar.png'
 import Arun from '../assets/arun1.png'; 
 
 const AboutMe = () => {

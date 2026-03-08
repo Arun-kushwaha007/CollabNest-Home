@@ -74,7 +74,7 @@ const featureCards = [
 
 const FeatureGrid = () => (
   <section
-    id="features"
+    id="feature-grid"
     className="relative py-24 px-4 sm:px-8 transition-colors duration-500"
     style={{
       backgroundColor: 'var(--background)',
@@ -305,7 +305,7 @@ const FeatureGrid = () => (
       </motion.div>
     </div>
 
-    <style jsx>{`
+    <style>{`
       @keyframes gradient-shift {
         0%, 100% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }

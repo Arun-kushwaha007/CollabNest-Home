@@ -1,27 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Twitter, Github, Linkedin, Heart } from 'lucide-react';
 
 const Footer = () => {
-  const [visitorCount, setVisitorCount] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    let currentCount = localStorage.getItem('visitorCount');
-    if (currentCount) {
-      currentCount = parseInt(currentCount, 10) + 1;
-    } else {
-      currentCount = 1;
-    }
-    localStorage.setItem('visitorCount', currentCount);
-    setVisitorCount(currentCount);
-  }, []);
-
-  const handleSectionClick = (href) => {
+  const handleSectionClick = (event, href) => {
     if (location.pathname !== '/') {
-      // If not on home page, navigate to home first
-      window.location.href = '/' + href;
+      event.preventDefault();
+      navigate({ pathname: '/', hash: href });
     }
   };
 
@@ -84,7 +73,7 @@ const Footer = () => {
               <div>
                 <a
                   href="#features"
-                  onClick={() => handleSectionClick('#features')}
+                  onClick={(e) => handleSectionClick(e, '#features')}
                   className="transition-colors duration-300 hover:underline"
                   style={{ color: 'var(--muted-foreground)' }}
                   onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
@@ -96,7 +85,7 @@ const Footer = () => {
               <div>
                 <a
                   href="#workflow"
-                  onClick={() => handleSectionClick('#workflow')}
+                  onClick={(e) => handleSectionClick(e, '#workflow')}
                   className="transition-colors duration-300 hover:underline"
                   style={{ color: 'var(--muted-foreground)' }}
                   onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}
@@ -119,7 +108,7 @@ const Footer = () => {
               <div>
                 <a
                   href="#contact"
-                  onClick={() => handleSectionClick('#contact')}
+                  onClick={(e) => handleSectionClick(e, '#contact')}
                   className="transition-colors duration-300 hover:underline"
                   style={{ color: 'var(--muted-foreground)' }}
                   onMouseEnter={(e) => (e.target.style.color = 'var(--primary)')}

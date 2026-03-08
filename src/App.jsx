@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { lazy, Suspense, useEffect, useLayoutEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
@@ -7,7 +7,6 @@ import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import FeatureGrid from "./components/FeatureGrid";
 import Workflow from "./components/Workflow";
-import AboutMe from "./sections/AboutMe";
 import "./App.css";
 import { AnimatePresence, motion } from 'framer-motion';
 import { gsap } from "gsap";
@@ -15,6 +14,8 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+const AboutMe = lazy(() => import("./sections/AboutMe"));
 
 // Home Page Component
 const HomePage = () => {
@@ -45,7 +46,9 @@ const AboutPage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <AboutMe />
+      <Suspense fallback={null}>
+        <AboutMe />
+      </Suspense>
     </motion.div>
   );
 };
@@ -55,8 +58,13 @@ const AppContent = () => {
   const location = useLocation();
 
   useLayoutEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
     // Only apply ScrollSmoother to the home page
     if (location.pathname === "/") {
+      const existing = ScrollSmoother.get();
+      if (existing) existing.kill();
+
       const smoother = ScrollSmoother.create({
         smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
         effects: true, // looks for data-speed and data-lag attributes on elements
@@ -72,7 +80,7 @@ const AppContent = () => {
       // Ensure normal scrolling for other pages
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
-       if (ScrollSmoother.get()) {
+      if (ScrollSmoother.get()) {
         ScrollSmoother.get().kill();
       }
     }
