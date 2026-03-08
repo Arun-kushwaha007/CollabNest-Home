@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Bolt, Users, CheckCircle, Database, Sun, Moon } from 'lucide-react';
+import { Bolt, Users, CheckCircle, Database } from 'lucide-react';
 import { fadeIn } from '../utils/motion';
 import CardSwap, { Card } from '../animations/CardSwap';
 
@@ -28,25 +28,6 @@ const features = [
 ];
 
 const Features = () => {
-  // Default to dark mode
-  const [isDark, setIsDark] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme === 'dark' : true; // Default to dark
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => setIsDark(!isDark);
-
   return (
     <section
       id="features"
@@ -60,7 +41,7 @@ const Features = () => {
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, var(--primary) 1px, transparent 0)',
-          backgroundSize: '40px 40px sm:60px 60px'
+          backgroundSize: '40px 40px'
         }} />
       </div>
 

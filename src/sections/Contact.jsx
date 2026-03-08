@@ -1,12 +1,31 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import Threads from '../animations/Threads';
+
+const Threads = lazy(() => import('../animations/Threads'));
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [enableBackground, setEnableBackground] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setEnableBackground(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
+      ref={sectionRef}
       id="contact"
       className="relative py-24 px-6 sm:px-10 overflow-hidden min-h-screen flex items-center transition-colors duration-500"
       style={{
@@ -17,11 +36,15 @@ const Contact = () => {
       {/* Background Animation */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
         <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
-          <Threads
-            amplitude={1}
-            distance={0}
-            enableMouseInteraction={true}
-          />
+          {enableBackground ? (
+            <Suspense fallback={null}>
+              <Threads
+                amplitude={1}
+                distance={0}
+                enableMouseInteraction={true}
+              />
+            </Suspense>
+          ) : null}
         </div>
         {/* Subtle overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />

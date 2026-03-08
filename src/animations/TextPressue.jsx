@@ -26,6 +26,8 @@ const TextPressure = ({
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const spansRef = useRef([]);
+  const charCentersRef = useRef([]);
+  const needsMeasureRef = useRef(true);
 
   const mouseRef = useRef({ x: 0, y: 0 });
   const cursorRef = useRef({ x: 0, y: 0 });
@@ -54,7 +56,7 @@ const TextPressure = ({
     };
 
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     if (containerRef.current) {
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
@@ -62,6 +64,7 @@ const TextPressure = ({
       mouseRef.current.y = top + height / 2;
       cursorRef.current.x = mouseRef.current.x;
       cursorRef.current.y = mouseRef.current.y;
+      needsMeasureRef.current = true;
     }
 
     return () => {
@@ -91,36 +94,56 @@ const TextPressure = ({
         setScaleY(yRatio);
         setLineHeight(yRatio);
       }
+      needsMeasureRef.current = true;
     });
   };
 
   useEffect(() => {
+    const handleWindowScroll = () => {
+      needsMeasureRef.current = true;
+    };
+
     setSize();
     window.addEventListener('resize', setSize);
-    return () => window.removeEventListener('resize', setSize);
+    window.addEventListener('scroll', handleWindowScroll, { passive: true });
+    return () => {
+      window.removeEventListener('resize', setSize);
+      window.removeEventListener('scroll', handleWindowScroll);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scale, text]);
 
   useEffect(() => {
+    const measureChars = () => {
+      if (!titleRef.current) return;
+      charCentersRef.current = spansRef.current.map((span) => {
+        if (!span) return null;
+        const rect = span.getBoundingClientRect();
+        return {
+          x: rect.x + rect.width / 2,
+          y: rect.y + rect.height / 2,
+        };
+      });
+      needsMeasureRef.current = false;
+    };
+
     let rafId;
     const animate = () => {
+      if (needsMeasureRef.current) {
+        measureChars();
+      }
+
       mouseRef.current.x += (cursorRef.current.x - mouseRef.current.x) / 15;
       mouseRef.current.y += (cursorRef.current.y - mouseRef.current.y) / 15;
 
       if (titleRef.current) {
-        const titleRect = titleRef.current.getBoundingClientRect();
-        const maxDist = titleRect.width / 2;
+        const titleWidth = titleRef.current.offsetWidth || 1;
+        const maxDist = titleWidth / 2;
 
-        spansRef.current.forEach((span) => {
-          if (!span) return;
+        spansRef.current.forEach((span, index) => {
+          if (!span || !charCentersRef.current[index]) return;
 
-          const rect = span.getBoundingClientRect();
-          const charCenter = {
-            x: rect.x + rect.width / 2,
-            y: rect.y + rect.height / 2,
-          };
-
-          const d = dist(mouseRef.current, charCenter);
+          const d = dist(mouseRef.current, charCentersRef.current[index]);
 
           const getAttr = (distance, minVal, maxVal) => {
             const val = maxVal - Math.abs((maxVal * distance) / maxDist);
@@ -140,6 +163,7 @@ const TextPressure = ({
       rafId = requestAnimationFrame(animate);
     };
 
+    measureChars();
     animate();
     return () => cancelAnimationFrame(rafId);
   }, [width, weight, italic, alpha, chars.length]);
