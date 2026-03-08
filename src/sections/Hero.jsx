@@ -75,7 +75,7 @@ const Hero = () => {
           className="mt-6 text-lg sm:text-xl md:text-2xl max-w-3xl leading-relaxed"
           style={{ color: 'var(--muted-foreground)' }}
         >
-          The new standard for collaborative productivity — sleek, fast, and delightful to use.
+          The new standard for collaborative productivity - sleek, fast, and delightful to use.
         </motion.p>
 
        <motion.div
